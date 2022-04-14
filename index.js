@@ -79,7 +79,7 @@ const player = new Fighter({
             x:90,
             y:50
         },
-        width:160,
+        width:120,
         height:50
     }
 });
@@ -141,7 +141,7 @@ const enemy= new Fighter({
             x:-160,
             y:50
         },
-        width:160,
+        width:120,
         height:50
     }
 });
@@ -233,7 +233,7 @@ function animate() {
     }) &&
         enemy.isAttacking
         ) { enemy.isAttacking= false;
-            player.health -=20;
+            player.health -=10;
             hit2.play();
             player.switchSprite("takeHit");
             document.getElementById('playerHealth').style.width= player.health + "%";
