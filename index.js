@@ -79,7 +79,7 @@ const player = new Fighter({
             x:90,
             y:50
         },
-        width:120,
+        width:100,
         height:50
     }
 });
@@ -141,7 +141,7 @@ const enemy= new Fighter({
             x:-160,
             y:50
         },
-        width:120,
+        width:100,
         height:50
     }
 });
@@ -253,8 +253,8 @@ function animate() {
             player.isAttacking=false;
             player.velocity.y=-10;
             enemy.velocity.y=-10;
-            player.velocity.x=-80;
-            enemy.velocity.x=80;
+            player.velocity.x=-120;
+            enemy.velocity.x=120;
             pushEffect.play();
             
         }
