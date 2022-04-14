@@ -1,18 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="/js/utils.js" defer></script>
+    <script src="/js/classes.js" defer></script>
     <script src="index.js" defer></script>
     <title>ISAMM Fighter</title>
 </head>
-<body>
     <style>
         * {
           box-sizing: border-box;
           font-family: 'Press Start 2P', cursive;
         }
+        .button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #0004ff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #4b4eff}
+
+.button:active {
+  background-color: #06003d;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+body{background-color: rgb(39, 38, 38);}
       </style>
-    </head>
     <body>
+      <div style="display: flex; justify-content: center;">
       <!-- red container div -->
       <div style="position: relative; display: inline-block">
         <!-- smaller red container div -->
@@ -111,5 +135,17 @@
         </div>
         <canvas></canvas>
       </div>
+    </div>
+      <br>
+      <div style="display: flex; justify-content: center;">
+        <ul>
+          <li style="color: #fff;">Player1 Controls: ZQSD+ Space Bar</li>
+          <li style="color: #fff;">Player2 Controls: Arrows+ Arrow Down for Attack</li>
+        </ul>
+        
+      </div>
+      <div style="display: flex; justify-content: center;">
+      <button class="button" id="refreshbtn" >New Game</button>
+    </div>
 </body>
 </html>
