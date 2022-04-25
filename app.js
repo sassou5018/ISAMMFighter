@@ -5,6 +5,11 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+
+app.get('/', (req, res) => {
+    app.use(express.static('Client'));
+    res.sendFile('Client/index.html', { root: __dirname });
+});
 app.get('/p1', (req, res) => {
     app.use(express.static('Client'));
     //if(req=="/p1"){
