@@ -264,11 +264,11 @@ function animate() {
         if(enemy.health<=0 || player.health<=0) {
             gameOver({player, enemy, timerId});
         }
-        socket.emit('position2', player.position);
-        socket.on('p1', (p1)=>{
-            console.log(p1);
-            enemy.position.x= p1.x ;
-            enemy.position.y= p1.y ;
+        socket.emit('position1', enemy.position);
+        socket.on('p2', (p2)=>{
+            console.log(p2);
+            player.position.x= p2.x ;
+            player.position.y= p2.y ;
         })
 }
 
