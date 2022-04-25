@@ -264,12 +264,8 @@ function animate() {
         if(enemy.health<=0 || player.health<=0) {
             gameOver({player, enemy, timerId});
         }
-        socket.emit('position2', player.position);
-        socket.on('p1', (p1)=>{
-            console.log(p1);
-            enemy.position.x= p1.x ;
-            enemy.position.y= p1.y ;
-        })
+        
+        
 }
 
 animate();
@@ -278,14 +274,18 @@ window.addEventListener('keydown', (event)=> {
     switch(event.key) {
         //player movement
         case 'd': keys.d.pressed= true;
+        socket.emit('position2', player.position);
         player.lastKey='d';
         break;
         case 'q': keys.q.pressed= true;
+        socket.emit('position2', player.position);
         player.lastKey='q';
         break;
         case 'z': player.velocity.y= -20;
+        socket.emit('position2', player.position);
         break;
         case ' ': player.attack();
+        socket.emit('attack', 1);
         break;
 
         //enemy movement
@@ -319,6 +319,16 @@ window.addEventListener('keyup', (event)=> {
     }
 })
 
+socket.on("p1", (p1)=>{
+    console.log(p1);
+    enemy.position.x= p1.x ;
+    enemy.position.y= p1.y ;
+})
+socket.on('atk', (atk)=>{
+    if (atk==2) {
+        enemy.attack();
+    }
+})
 
 let button = document.getElementById("refreshbtn");
 button.onclick= function() {

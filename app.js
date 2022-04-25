@@ -22,12 +22,20 @@ app.get('/p2', (req, res) => {
 io.on('connection', (socket) => {
   console.log('a user connected');
   socket.on('position2', (position2)=>{ //player position p2
-      //console.log(position2);
-      socket.emit("p2" ,position2);
+      console.log("p1",position2);
+      io.emit("p2" ,position2);
   })
   socket.on('position1', (position1)=>{ //enemy position p1
-    //console.log(position1);
-      socket.emit("p1", position1);
+    console.log('p2',position1);
+      io.emit("p1", position1);
+  })
+  socket.on('attack', (player)=>{ 
+    console.log(player);
+    if(player===1){
+        io.emit("atk",1);
+    } else if (player===2){
+        io.emit("atk",2);
+    }
   })
 });
 
