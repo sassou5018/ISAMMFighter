@@ -28,11 +28,20 @@ io.on('connection', (socket) => {
   console.log('a user connected');
   
   //create room
-  socket.on('createID', (cID)=>{
-    console.log(cID);
-    let createID=cID;
-    socket.join(cID);
-  })
+  var h;
+  function test () {
+    
+    socket.on('createID', (cID)=>{
+      console.log(cID);
+      socket.join(cID);
+      h=cID;
+    })
+    //
+    return h;
+  }
+  let k=test();
+  console.log(k);
+ 
 
 
   //join room
