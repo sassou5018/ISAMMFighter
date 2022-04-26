@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="/socket.io/socket.io.js" defer></script>
   <script src="home.js" defer></script>
     <title>ISAMM Fighter</title>
     <link rel="icon" href="https://lh3.googleusercontent.com/qZGzCrImc9emNm8yDoFl2irIEXRE9tjGOn3Zsda_hvTxwLG7zrAOaOynWBswqATq0uA">
@@ -53,7 +54,13 @@ body {
       <button class="button" id="btn1" >Join As Player1</button>
     </div>
     <div style="display: flex; justify-content: center;">
+      <input class="text" id="createID" type="text" placeholder="Create#ID"></input>
+    </div>
+    <div style="display: flex; justify-content: center;">
       <button class="button" id="btn2">Join As Player2</button>
+    </div>
+    <div style="display: flex; justify-content: center;">
+      <input class="text" id="joinID" type="text" placeholder="Join#ID"></input>
     </div>
 
 </body>
