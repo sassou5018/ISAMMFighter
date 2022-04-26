@@ -183,7 +183,6 @@ function animate() {
     player.velocity.x=0;
     enemy.velocity.x=0;
     //player movement
-    
     if (keys.q.pressed== true && player.lastKey==='q') {
         player.velocity.x=-4;
         player.switchSprite("run");
