@@ -5,12 +5,12 @@ const joinID=document.getElementById("joinID");
 var socket = io();
 
 button1.onclick= ()=>{
-    if(createID.value){
-        socket.emit('createID', createID.value);
+    if(joinID.value){
+        socket.emit('joinID', joinID.value);
         window.location.pathname="/p1";
     } else {
         window.alert("Please Enter A Valid Game #ID");
-    }
+    };
     
 }
 console.log(createID.value);
