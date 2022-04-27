@@ -35,19 +35,19 @@ io.on('connection', (socket) => {
     //recieve p1 position and emit to p2
   socket.on('position2', (position2)=>{ //player position p2
     console.log("p1",position2);
-    io.to(createID).emit("p2" ,position2);
+    io.to(joinID).emit("p2" ,position2);
 
      //recieve p2 position and emit to p1
   socket.on('position1', (position1)=>{ //enemy position p1
     console.log('p2',position1);
-      io.to(createID).emit("p1", position1);
+      io.to(joinID).emit("p1", position1);
 
       socket.on('attack', (player)=>{ 
         console.log(player);
         if(player===1){
-            io.to(createID).emit("atk",1);
+            io.to(joinID).emit("atk",1);
         } else if (player===2){
-            io.to(createID).emit("atk",2);
+            io.to(joinID).emit("atk",2);
         }
       })
   })

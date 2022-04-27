@@ -5,8 +5,8 @@ const joinID=document.getElementById("joinID");
 var socket = io();
 
 button1.onclick= ()=>{
-    if(joinID.value){
-        socket.emit('joinID', joinID.value);
+    if(createID.value){
+        socket.emit('joinID', createID.value);
         window.location.pathname="/p1";
     } else {
         window.alert("Please Enter A Valid Game #ID");
@@ -25,3 +25,6 @@ button2.onclick= ()=>{
 }
 
 
+socket.on('joined', (roomID)=>{
+    window.alert(roomID);
+})

@@ -335,5 +335,5 @@ button.onclick= function() {
 }
 
 socket.on('joined', (roomID)=>{
-    alert(roomID);
+    window.alert(roomID);
 })
