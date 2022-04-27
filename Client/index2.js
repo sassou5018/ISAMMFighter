@@ -334,3 +334,8 @@ let button = document.getElementById("refreshbtn");
 button.onclick= function() {
     location.reload();
 }
+
+
+socket.on('joined', (roomID)=>{
+    alert(roomID);
+})

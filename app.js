@@ -12,12 +12,8 @@ app.get('/', (req, res) => {
 });
 app.get('/p1', (req, res) => {
     app.use(express.static('Client'));
-    //if(req=="/p1"){
+    
         res.sendFile('Client/player1.html', { root: __dirname });
-    //}
-    //else{
-    //    res.sendFile('Client/index2.html', { root: __dirname });
-    //}
 });
 app.get('/p2', (req, res) => {
     app.use(express.static('Client'));
@@ -27,20 +23,6 @@ app.get('/p2', (req, res) => {
 io.on('connection', (socket) => {
   console.log('a user connected');
   
-  //create room
-  var h;
-  function test () {
-    
-    socket.on('createID', (cID)=>{
-      console.log(cID);
-      socket.join(cID);
-      h=cID;
-    })
-    //
-    return h;
-  }
-  let k=test();
-  console.log(k);
  
 
 
@@ -48,32 +30,39 @@ io.on('connection', (socket) => {
   socket.on('joinID', (joinID)=>{
     console.log(joinID);
     socket.join(joinID);
-  })
+    io.to(joinID).emit('joined',joinID);
 
-
-  //recieve p1 position and emit to p2
+    //recieve p1 position and emit to p2
   socket.on('position2', (position2)=>{ //player position p2
-      console.log("p1",position2);
-      io.to(createID).emit("p2" ,position2);
-  })
+    console.log("p1",position2);
+    io.to(createID).emit("p2" ,position2);
 
-
-  //recieve p2 position and emit to p1
+     //recieve p2 position and emit to p1
   socket.on('position1', (position1)=>{ //enemy position p1
     console.log('p2',position1);
       io.to(createID).emit("p1", position1);
+
+      socket.on('attack', (player)=>{ 
+        console.log(player);
+        if(player===1){
+            io.to(createID).emit("atk",1);
+        } else if (player===2){
+            io.to(createID).emit("atk",2);
+        }
+      })
   })
+})
+  })
+
+
+  
+
+
+ 
 
 
   //recieve attack event and evaluate value then emit atk event to other player
-  socket.on('attack', (player)=>{ 
-    console.log(player);
-    if(player===1){
-        io.to(createID).emit("atk",1);
-    } else if (player===2){
-        io.to(createID).emit("atk",2);
-    }
-  })
+ 
   
 });
 
