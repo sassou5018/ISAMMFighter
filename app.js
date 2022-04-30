@@ -1,72 +1,15 @@
 const express = require('express');
-const app = express();
 const http = require('http');
-const server = http.createServer(app);
 const { Server } = require("socket.io");
+const path = require('path');
+
+
+
+const app = express();
+const server = http.createServer(app);
 const io = new Server(server);
 
-
-app.get('/', (req, res) => {
-    app.use(express.static('Client'));
-    res.sendFile('Client/index.html', { root: __dirname });
-});
-app.get('/p1', (req, res) => {
-    app.use(express.static('Client'));
-    
-        res.sendFile('Client/player1.html', { root: __dirname });
-});
-app.get('/p2', (req, res) => {
-    app.use(express.static('Client'));
-    res.sendFile('Client/player2.html', { root: __dirname });
-});
-
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  
- 
-
-
-  //join room
-  socket.on('joinID', (joinID)=>{
-    console.log(joinID);
-    socket.join(joinID);
-    io.to(joinID).emit('joined',joinID);
-
-    //recieve p1 position and emit to p2
-  socket.on('position2', (position2)=>{ //player position p2
-    console.log("p1",position2);
-    io.to(joinID).emit("p2" ,position2);
-
-     //recieve p2 position and emit to p1
-  socket.on('position1', (position1)=>{ //enemy position p1
-    console.log('p2',position1);
-      io.to(joinID).emit("p1", position1);
-
-      socket.on('attack', (player)=>{ 
-        console.log(player);
-        if(player===1){
-            io.to(joinID).emit("atk",1);
-        } else if (player===2){
-            io.to(joinID).emit("atk",2);
-        }
-      })
-  })
-})
-  })
-
-
-  
-
-
- 
-
-
-  //recieve attack event and evaluate value then emit atk event to other player
- 
-  
-});
-
-
+app.use('/static', express.static(path.join(__dirname, 'Client')));
 
 
 server.listen(process.env.PORT || 3000, () => {
